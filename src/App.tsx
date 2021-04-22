@@ -1,25 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import MainRoute from "./MainRoute";
+import { StoreProvider } from "./store/AppContext";
+import { execApi } from "./services/api";
+declare global {
+  interface Window {
+    _token: string;
+  }
+}
 
 function App() {
+  useEffect(() => {
+    const token = localStorage.getItem("GSI_token");
+    if (token) window._token = token;
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreProvider>
+      <MainRoute></MainRoute>
+    </StoreProvider>
   );
 }
 
