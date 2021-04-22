@@ -1,5 +1,6 @@
 import { Form, Input, Button, Checkbox, Alert, Layout, Row, Col } from "antd";
 import React from "react";
+import { Link } from "react-router-dom";
 import { execApi } from "../services/api";
 import { Actions } from "../store/Actions";
 import { UseGlobalContext } from "../store/AppContext";
@@ -8,7 +9,7 @@ const { Content } = Layout;
 
 const layout = {
   labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
+  wrapperCol: { span: 12 },
 };
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
@@ -46,7 +47,7 @@ const LoginForm = (props: any) => {
   return (
     <Layout style={{ height: "100vh" }}>
       <Row gutter={16} justify="center" align="middle">
-        <Col span={18} style={{ padding: 20 }}>
+        <Col span={12} style={{ padding: 20 }}>
           <h1 style={{ textAlign: "center" }}>Login</h1>
           <Form
             {...layout}
@@ -82,14 +83,11 @@ const LoginForm = (props: any) => {
               <Input.Password />
             </Form.Item>
 
-            <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-
             <Form.Item {...tailLayout}>
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>
+              &nbsp;&nbsp;&nbsp;<Link to="/register">Register</Link>
             </Form.Item>
           </Form>
         </Col>
